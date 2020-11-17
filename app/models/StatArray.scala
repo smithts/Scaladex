@@ -1,0 +1,9 @@
+package models
+
+/**
+ *
+ *
+ * */
+class StatArray {
+
+}

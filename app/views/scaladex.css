@@ -18,8 +18,42 @@
 
 /* MASTER CSS */
 
+ /* topnav class defines navigation bar placed at top of screen*/
+ .topnav  {
+	 background-color: #6E6BAB ;
+	 overflow: hidden;
+ }
+
+ /* a class defines link inside top navigation bar*/
+ .topnav a {
+	 float: left;
+	 color: #f2f2f2;
+	 text-align: center;
+	 font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
+	 font-style: normal;
+	 letter-spacing: 0.75px;
+	 padding: 40px 42px;
+	 text-decoration: none;
+	 font-size: 18px;
+ }
+
+ .topnav a:hover {
+	 background-color: #ddd;
+	 color: #6E6BAB;
+ }
+
+ .topnav a.active {
+	 background-color: #5f2eea;
+	 color: white;
+ }
+
+ .topnav-right {
+	 float: right;
+ }
+
+ /*Defines title of application*/
 .title {
-	color: #DE6868;
+	color: #de6868;
 	font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
 	font-style: normal;
 	font-weight: 600;
@@ -35,6 +69,12 @@ body {
 	background: #fcfcfc;
 }
 
+/*Moves content of application to center of screen*/
+ .content {
+	 max-width: 500px;
+	 margin: auto;
+ }
+/*The instruction bar is located on the left side and gives the user instructions*/
 .instruction_bar {
 	width: 160px; /* Set the width of the sidebar */
   	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -47,56 +87,29 @@ body {
 	border-radius: 80px;
 }
 
+/*Defines text inside instruction bar*/
 .instruction_bar p {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
   font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
-  font-style: bold;
+  font-style: normal;
   color: #818181;
   display: block;
 }
 
 /* PokeDex Image */
+ /*First image shown is currently Blaziken, but I am okay with changing it*/
 image {
 	position: absolute;
 	width: 475px;
 	height: 461px;
 	left: 474px;
 	top: 341px;
-	background: url(image.png);
+	background: url(blaziken.png);
 }
 
-.topnav  {
-	background-color: #6E6BAB ;
-	overflow: hidden;
-}
 
-.topnav a {
-	float: left;
-  	color: #f2f2f2;
-  	text-align: center;
-  	font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
-  	font-style: bold;
-  	letter-spacing: 0.75px;
-  	padding: 40px 42px;
-  	text-decoration: none;
-  	font-size: 18px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: #6E6BAB;
-}
-
-.topnav a.active {
-  background-color: #5f2eea;
-  color: white;
-}
-
-.topnav-right {
-  float: right;
-}
 
 /* Title */
 .header {
@@ -140,32 +153,6 @@ input [type=text]:focus {
 	border: 3px solid #555;
 }
 
-
-.title_cell {
-	/* Table Cell */
-
-	/* Auto Layout */
-	/*display: flex;
-	flex-direction: column;*/
-	/*align-items: flex-start;*/
-	padding: 12px 20px;
-
-	/*position: relative;*/
-	width: 502px;
-	height: 56px;
-
-	/* Grayscale / Input Background */
-	background: #EFF0F7;
-
-	/* Grayscale / Line */
-	border: 1px solid #D6D8E7;
-
-}
-
-.content {
-	max-width: 500px;
-  	margin: auto;
-}
 /*PokeDex Input */
 
 .row {
@@ -192,6 +179,14 @@ input [type=text]:focus {
 
 }
 
+ /*Helps format main image for pokedex*/
+ .pokedex-img {
+	 position: relative;
+	 margin-top: 75px;
+
+ }
+
+ /*Displays status */
 .status {
 	display: grid;
 	margin-top: 200px;
@@ -235,6 +230,7 @@ input [type=text]:focus {
 
 /*credit for the wiggly button: https://codepen.io/piecdesmit/details/OMYNZg/;*/
 
+ /*Button1 placed at upper left corner, but I may remove this*/
 .button1 {
 	position: absolute;
 	top:0;
@@ -291,7 +287,7 @@ input [type=text]:focus {
   100% {transform: scale(.92,.9);}
 }
 
-keyframes active { 
+@keyframes active {
   0% {transform: scale(1,1);}
   90% {transform: scale(.9,.88);}
   100% {transform: scale(.92,.9);}
@@ -377,6 +373,7 @@ keyframes active {
   100% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
 }
 
+/*Button2 placed at bottom of screen and used for Search and Battle*/
 .button2 {
 	position: relative;
 	background-color: #5f2eea;
@@ -433,7 +430,7 @@ keyframes active {
   100% {transform: scale(.92,.9);}
 }
 
-keyframes active { 
+@keyframes active {
   0% {transform: scale(1,1);}
   90% {transform: scale(.9,.88);}
   100% {transform: scale(.92,.9);}
@@ -519,109 +516,6 @@ keyframes active {
   100% { -webkit-transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1.1, 0, 0, 0, 0, 1.1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
 }
 
-.pokedex-img {
-	position: relative;
-	margin-top: 75px;
-	
-}
-
-/*formats text inside search/fight button*/
-/*	position: absolute; {}
-	left: 5%;
-	right: 5%;
-	top: 0%;
-	bottom: 0%;
-*/
-
-/*
-	
-	font-family: Poppins;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 28px;
-*/
-/* or 175% 
-	display: flex;
-	align-items: center;
-	text-align: center;
-	letter-spacing: 0.75px;
-*/
-/* Grayscale / Background 
-	color: #F7F7FC;
-*/
-	
-
-
-/*formats button for battle and search */
-.battle_and_search_button {
-	position: absolute;
-	width: 200px;
-	height: 64px;
-	left: 107px;
-	top: 16px;
-}
-
-/*formats text inside battle and search button */
-
-.battle_and_search_button_text {
-	position: absolute;
-	left: 5%;
-	right: 5%;
-	top: 0%;
-	bottom: 0%;
-
-	/* Desktop / Link Small */
-	font-family: Poppins;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 16px;
-	line-height: 28px;
-
-	/* or 175% */
-	display: flex;
-	align-items: center;
-	text-align: center;
-	letter-spacing: 0.75px;
-
-	/* Grayscale / Off-white */
-	color: #FCFCFC;
-}
-
-
-
-/*formatting for status updates*/
-.status {
-	position: relative;
-	width: 579px;
-	height: 160px;
-
-	background: #FFFFFF;
-	border: 1px solid #000000;
-	box-sizing: border-box;
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-/*formatting for font inside status*/
-.status_font {
-	position: absolute;
-	height: 18px;
-	left: 16.01%;
-	right: 8.51%;
-	top: calc(50% - 18px/2);
-
-	font-family: Poppins;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 36px;
-	line-height: 18px;
-
-	/* identical to box height, or 50% */
-	letter-spacing: 1px;
-
-	/* Grayscale / Body */
-	color: #403C5C;
-}
 
 /*formatting for pokemon stats box */
 .stats {
@@ -713,7 +607,7 @@ keyframes active {
 	position: absolute;
 	width: 475px;
 	height: 461px;
-	background: url(image.png);
+	background: url(blaziken.png);
 }
 
 .player2_input {

@@ -1,5 +1,7 @@
 package models
 
+import play.api.libs.json.JsValue
+
 /**
  * Pokemon class
  *
@@ -7,7 +9,7 @@ package models
  *
  * Will encapsulate all necessary information needed to display a Pokemon.
  * */
-class Pokemon(var data: String) {
+class Pokemon(var name: String, var jsonData: JsValue) {
   // Constants
 
   //Stats array indexes
@@ -19,11 +21,10 @@ class Pokemon(var data: String) {
   private val SPEED = 5
 
   // Class values
+  val id = jsonData("id").toString()
 
   // will parse this from data
-  var name = ""
-
-  // will parse this from data
+  // or maybe not?
   var description = ""
 
   // will parse this from data
@@ -31,8 +32,10 @@ class Pokemon(var data: String) {
 
   // will parse this from data
   var stats = new Array[Stat](6)
-  parseStatArray()
+  parseStatArray(jsonData("stats"))
 
+  // image url for the pokemon
+  val imageURL = "https://img.pokemondb.net/artwork/"+ name.toLowerCase + ".jpg"
 
   // Test method
   def roar(): Unit = {
@@ -45,14 +48,13 @@ class Pokemon(var data: String) {
    * Results stored in and accessible from "stats" field
    *
    */
-  private def parseStatArray(): Unit = {
-    //These are obviously fake values. Will need to parse them from the JSON
-    stats(HP) = Stat("HP", 100)
-    stats(ATTACK) = Stat("Attack", 101)
-    stats(DEFENSE) = Stat("Defense", 102)
-    stats(SPECIAL_ATTACK) = Stat("Special Attack", 103)
-    stats(SPECIAL_DEFENSE) = Stat("Special Defense", 104)
-    stats(SPEED) = Stat("Speed", 105)
+  private def parseStatArray(json: JsValue): Unit = {
+    stats(HP) = Stat("HP", json(0)("base_stat").toString.toInt)
+    stats(ATTACK) = Stat("Attack", json(1)("base_stat").toString.toInt)
+    stats(DEFENSE) = Stat("Defense", json(2)("base_stat").toString.toInt)
+    stats(SPECIAL_ATTACK) = Stat("Special Attack", json(3)("base_stat").toString.toInt)
+    stats(SPECIAL_DEFENSE) = Stat("Special Defense", json(4)("base_stat").toString.toInt)
+    stats(SPEED) = Stat("Speed", json(5)("base_stat").toString.toInt)
   }
 
   // Specified Getter for HP
@@ -84,6 +86,5 @@ class Pokemon(var data: String) {
   def getSpeed(): Int = {
     stats(SPEED).basePower
   }
-
-
+  
 }

@@ -22,6 +22,8 @@
  .topnav  {
 	 background-color: #6E6BAB ;
 	 overflow: hidden;
+	 margin: 0px;
+
  }
 
  /* a class defines link inside top navigation bar*/
@@ -73,6 +75,16 @@ body {
  .content {
 	 max-width: 500px;
 	 margin: auto;
+ }
+
+ .centered-down {
+	 position: absolute;
+	 max-width: 500px;
+	 top: 0px;
+	 margin-left: 790px;
+	 margin-top: 100px;
+	 /*bottom: 0;*/
+	 color: #Efd5d3;
  }
 /*The instruction bar is located on the left side and gives the user instructions*/
 .instruction_bar {
@@ -141,6 +153,7 @@ image {
     justify-content: center;
 }
 
+/*Input for PokeDex*/
 .rounded-input {
 	margin-left: 125px;
 	margin-top: 50px;
@@ -148,6 +161,33 @@ image {
 	border-radius: 10px;
 	box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
 }
+
+/*Input for Battle*/
+ .rounded-input2 {
+	 margin-left: 125px;
+	 margin-top: 50px;
+	 padding: 10px;
+	 border-radius: 10px;
+	 box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+ }
+
+/*Two-Column Layout*/
+
+ .left, .right {
+	 height: 100%;
+	 width: 50%;
+	 position: fixed;
+	 overflow-x: hidden;
+	 padding-top: 20px;
+ }
+ .left {
+	 left: 0;
+	 background-color: #4f92c6;
+ }
+ .right {
+	 right: 0;
+	 background-color: #de6bab;
+ }
 
 input [type=text]:focus {
 	border: 3px solid #555;

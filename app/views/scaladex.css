@@ -22,6 +22,8 @@
  .topnav  {
 	 background-color: #6E6BAB ;
 	 overflow: hidden;
+	 margin: 0px;
+
  }
 
  /* a class defines link inside top navigation bar*/
@@ -73,6 +75,16 @@ body {
  .content {
 	 max-width: 500px;
 	 margin: auto;
+ }
+
+ .centered-down {
+	 position: absolute;
+	 max-width: 500px;
+	 top: 0px;
+	 margin-left: 790px;
+	 margin-top: 100px;
+	 /*bottom: 0;*/
+	 color: #Efd5d3;
  }
 /*The instruction bar is located on the left side and gives the user instructions*/
 .instruction_bar {
@@ -141,6 +153,7 @@ image {
     justify-content: center;
 }
 
+/*Input for PokeDex*/
 .rounded-input {
 	margin-left: 125px;
 	margin-top: 50px;
@@ -148,6 +161,33 @@ image {
 	border-radius: 10px;
 	box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
 }
+
+/*Input for Battle*/
+ .rounded-input2 {
+	 margin-left: 125px;
+	 margin-top: 50px;
+	 padding: 10px;
+	 border-radius: 10px;
+	 box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+ }
+
+/*Two-Column Layout*/
+
+ .left, .right {
+	 height: 100%;
+	 width: 50%;
+	 position: fixed;
+	 overflow-x: hidden;
+	 padding-top: 20px;
+ }
+ .left {
+	 left: 0;
+	 background-color: #4f92c6;
+ }
+ .right {
+	 right: 0;
+	 background-color: #de6bab;
+ }
 
 input [type=text]:focus {
 	border: 3px solid #555;
@@ -186,6 +226,11 @@ input [type=text]:focus {
 
  }
 
+ .result-img {
+	 position: relative;
+	 margin-top: 250px;
+ }
+
  /*Displays status */
 .status {
 	display: grid;
@@ -193,11 +238,51 @@ input [type=text]:focus {
 	font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
 	place-items: center;
 	color: #4f92c6;
+	background-color: #EFD5D3;
 	border-radius: 80px;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 40px;
 }
+
+ .pokedex-result {
+	 display: grid;
+	 margin-top: 40px;
+	 font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
+	 place-items: center;
+	 color: #fcfcfc;
+	 background-color: #4f92c6;
+	 border-radius: 80px;
+	 font-style: normal;
+	 font-weight: 600;
+	 font-size: 40px;
+ }
+
+ .battle-result {
+	 display: grid;
+	 margin-top: 20px;
+	 font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
+	 place-items: center;
+	 color: #fcfcfc;
+	 background-color: #EFD5D3;
+	 border-radius: 80px;
+	 font-style: normal;
+	 font-weight: 600;
+	 font-size: 40px;
+ }
+
+ .winner {
+	 display: grid;
+	 margin-top: 40px;
+	 font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
+	 place-items: center;
+	 color: #de6868;
+	 background-color: #e1c267;
+	 border-radius: 80px;
+	 font-style: normal;
+	 font-weight: 600;
+	 font-size: 40px;
+ }
 
 /*Defines format of the text for entering pokemon into pokedex */
 .enter_pokedex {
@@ -522,20 +607,13 @@ input [type=text]:focus {
 	position: absolute;
 	width: 356px;
 	height: 352px;
-
+	top: 275px;
+	right: 90px;
 	background: #C4C4C4;
 	border: 1px solid #000000;
 	box-sizing: border-box;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.stats_text {
-	position: absolute;
-	width: 319px;
-	height: 252px;
-
-	/* Desktop / Link Small */
-	font-family: Poppins;
+	font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
@@ -547,35 +625,59 @@ input [type=text]:focus {
 
 	color: #000000;
 }
+
+ .stats-table {
+	 position: absolute;
+	 /*width: 356px;*/
+	 /*height: 352px;*/
+	 top: 200px;
+	 left: 500px;
+	 /*margin: 0;*/
+	 /*right: 90px;*/
+	 color: #fcfcfc;
+	 background: #4f92c6;
+	 border: 1px solid #000000;
+	 border-spacing: 15px;
+	 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	 font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
+	 font-style: normal;
+	 font-size: 16px;
+	 font-weight: 600;
+
+
+	 /* or 175% */
+	 text-align: center;
+
+
+
+ }
+
 
 /*defines box for description*/
 .desc {
 	position: absolute;
-	width: 661px;
-	height: 130px;
-
-	background: #C4C4C4;
-}
-
-/*defines font for description*/
-.desc_text {
-	position: absolute;
-	width: 632px;
-	height: 105px;
-
-	/* Desktop / Link Small */
-	font-family: Poppins;
+	/*width: 400px;*/
+	/*height: 352px;*/
+	top: 300px;
+	left: 200px;
+	color: #fcfcfc;
+	background: #4f92c6;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	font-family: 'Georgia','Garamond', 'Verdana', sans-serif;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 28px;
 
 	/* or 175% */
-	text-align: center;
+	text-align: left;
 	letter-spacing: 0.75px;
 
-	color: #000000;
 }
+
+
 
 /*Input for Player 1*/
 .player1_input {

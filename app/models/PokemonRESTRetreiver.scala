@@ -14,17 +14,19 @@ class PokemonRESTRetriever {
   val jsonParser = new PokemonJSONParser()
 
   // Simple cache mechanism
-  var pokeMap:Map[String, Pokemon] = Map()
+  private var pokeMap:Map[String, Pokemon] = Map()
 
 
   @throws(classOf[java.io.IOException])
-  //def getPokemon(name: String): Option[Pokemon] = {
-  def getPokemon(name: String): String = {
+  def getPokemon(name: String): Pokemon = {
       val pokemonName = name.toLowerCase()
 
       // checks the cache map for the pokemon
       if (pokeMap.contains(pokemonName)) {
-        //return pokeMap.get(pokemonName)
+        //map.get returns an Option[Pokemon]
+        var opt = pokeMap.get(pokemonName)
+
+        return opt.get
       }
 
       val url = "https://pokeapi.co/api/v2/pokemon/" + pokemonName
@@ -36,27 +38,24 @@ class PokemonRESTRetriever {
           //pokemon does not exist in PokeAPI
           return null
         } else {
+
           val json: JsValue = Json.parse(response)
 
-          // Incomplete, but this now returns a JsValue with
-          // all of the stats
-          return json("stats").toString()
+          val pokemon = new Pokemon(pokemonName.capitalize, json)
+
+          //add pokemon to the cache map
+          pokeMap += (name -> pokemon)
+
+          return pokemon
+
         }
 
-      }
-      // not really sure how exceptions work, ironically
-      //catch () {
+      }//catch () {
 
-      //}
+    //}
 
-
-
-
-      //placeholder
-      //null
 
     }
-  //}
 
 
 }

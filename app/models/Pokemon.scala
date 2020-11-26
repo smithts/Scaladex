@@ -1,6 +1,6 @@
 package models
 
-import play.api.libs.json.JsValue
+import play.api.libs.json.{JsArray, JsValue, JsString}
 
 /**
  * Pokemon class
@@ -20,6 +20,8 @@ class Pokemon(var name: String, var jsonData: JsValue) {
   private val SPECIAL_DEFENSE = 4
   private val SPEED = 5
 
+  val typeRelations = Array("Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy")
+
   // Class values
   val id = jsonData("id").toString()
 
@@ -28,7 +30,9 @@ class Pokemon(var name: String, var jsonData: JsValue) {
   var description = ""
 
   // will parse this from data
-  var types = new Array[Type](2)
+  var types = new Array[String](2)
+  parseTypesArray(jsonData("types"))
+
 
   // will parse this from data
   var stats = new Array[Stat](6)
@@ -36,6 +40,9 @@ class Pokemon(var name: String, var jsonData: JsValue) {
 
   // image url for the pokemon
   val imageURL = "https://img.pokemondb.net/artwork/"+ name.toLowerCase + ".jpg"
+
+  var primaryTypeAdvantages = Array[Double](18)
+
 
   // Test method
   def roar(): Unit = {
@@ -49,42 +56,62 @@ class Pokemon(var name: String, var jsonData: JsValue) {
    *
    */
   private def parseStatArray(json: JsValue): Unit = {
-    stats(HP) = Stat("HP", json(0)("base_stat").toString.toInt)
-    stats(ATTACK) = Stat("Attack", json(1)("base_stat").toString.toInt)
-    stats(DEFENSE) = Stat("Defense", json(2)("base_stat").toString.toInt)
-    stats(SPECIAL_ATTACK) = Stat("Special Attack", json(3)("base_stat").toString.toInt)
-    stats(SPECIAL_DEFENSE) = Stat("Special Defense", json(4)("base_stat").toString.toInt)
-    stats(SPEED) = Stat("Speed", json(5)("base_stat").toString.toInt)
+    stats(HP) = Stat("HP", json(HP)("base_stat").toString.toInt)
+    stats(ATTACK) = Stat("Attack", json(ATTACK)("base_stat").toString.toInt)
+    stats(DEFENSE) = Stat("Defense", json(DEFENSE)("base_stat").toString.toInt)
+    stats(SPECIAL_ATTACK) = Stat("Special Attack", json(SPECIAL_ATTACK)("base_stat").toString.toInt)
+    stats(SPECIAL_DEFENSE) = Stat("Special Defense", json(SPECIAL_DEFENSE)("base_stat").toString.toInt)
+    stats(SPEED) = Stat("Speed", json(SPEED)("base_stat").toString.toInt)
+  }
+
+  def parseTypesArray(json: JsValue): Unit = {
+    types(0) = json(0)("type")("name").as[String].capitalize
+
+    if (json.as[JsArray].value.size == 2) {
+      types(1)= json(1)("type")("name").as[String].capitalize
+    }
   }
 
   // Specified Getter for HP
-  def getHP(): Int = {
+  def hp(): Int = {
     stats(HP).basePower
   }
 
   // Specified Getter for Attack
-  def getAttack(): Int = {
+  def attack(): Int = {
     stats(ATTACK).basePower
   }
 
   // Specified Getter for Defense
-  def getDefense(): Int = {
+  def defense(): Int = {
     stats(DEFENSE).basePower
   }
 
   // Specified Getter for Sp. Attack
-  def getSpecialAttack(): Int = {
+  def specialAttack(): Int = {
     stats(SPECIAL_ATTACK).basePower
   }
 
   // Specified Getter for Sp. Defense
-  def getSpecialDefense(): Int = {
+  def specialDefense(): Int = {
     stats(SPECIAL_DEFENSE).basePower
   }
 
   // Specified Getter for Speed
-  def getSpeed(): Int = {
+  def speed(): Int = {
     stats(SPEED).basePower
   }
-  
+
+  def getDamageMultiplier(other: Pokemon): Double = {
+    var multiplier = 1.0
+
+    var otherType1 = other.types(0)
+    multiplier *= primaryTypeAdvantages(typeRelations.indexOf(otherType1))
+
+    if (other.types(1) != null) {
+      multiplier *= primaryTypeAdvantages(typeRelations.indexOf(other.types(1)))
+    }
+
+    return multiplier
+  }
 }

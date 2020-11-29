@@ -18,6 +18,7 @@
 
 /* MASTER CSS */
 
+ /*Helps with formatting for the jQuery autocomplete widget*/
  ul {
 	 list-style: none;
  }
@@ -141,14 +142,14 @@ body {
 }
 
 /* PokeDex Image */
- /*First image shown is currently Blaziken, but I am okay with changing it*/
+ /*First image shown is currently Blaziken*/
 image {
 	position: absolute;
 	width: 475px;
 	height: 461px;
 	left: 474px;
 	top: 341px;
-	background: url(blaziken.png);
+	background: url("../views/blaziken.png");
 }
 
 
@@ -739,7 +740,7 @@ input [type=text]:focus {
 	position: absolute;
 	width: 475px;
 	height: 461px;
-	background: url(blaziken.png);
+	background: url(trainer1.png);
 }
 
 .player2_input {

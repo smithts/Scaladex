@@ -1,5 +1,7 @@
 package models
 
+import java.io.FileNotFoundException
+
 import scala.io.Source
 import play.api.libs.json._
 
@@ -10,12 +12,12 @@ import play.api.libs.json._
  *
  * */
 class PokemonRESTRetriever {
-  // This will do all the parsing necessary
-  val jsonParser = new PokemonJSONParser()
 
   // Simple cache mechanism
   private var pokeMap:Map[String, Pokemon] = Map()
 
+  // Serves the Type advantage/disadvantage info to the Pokemon class
+  private var utils = new TypeUtils()
 
   @throws(classOf[java.io.IOException])
   def getPokemon(name: String): Pokemon = {
@@ -41,7 +43,11 @@ class PokemonRESTRetriever {
 
           val json: JsValue = Json.parse(response)
 
+          //Create pokemon object
           val pokemon = new Pokemon(pokemonName.capitalize, json)
+
+          //Using types, get the primary type advantage and assign to pokemon.primaryTypeAdvantages field
+          pokemon.primaryTypeAdvantages = utils.getTypeRelations(pokemon.types(0))
 
           //add pokemon to the cache map
           pokeMap += (name -> pokemon)
@@ -50,12 +56,10 @@ class PokemonRESTRetriever {
 
         }
 
-      }//catch () {
-
-    //}
+      } catch {
+        case e: FileNotFoundException => return null
+      }
 
 
     }
-
-
 }

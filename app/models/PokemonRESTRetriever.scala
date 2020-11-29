@@ -57,9 +57,15 @@ class PokemonRESTRetriever {
         }
 
       } catch {
+            //if not found, return null object. Front end will handle that.
         case e: FileNotFoundException => return null
       }
 
+
+    //Flavor Text:
+    //https://pokeapi.co/api/v2/pokemon-species/{id or name}/
+    //["flavor_text_entries"][0]["flavor_text"]
+    //remember to skip "\n" characters.
 
     }
 }

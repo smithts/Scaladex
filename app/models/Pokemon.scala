@@ -23,7 +23,9 @@ class Pokemon(var name: String, var jsonData: JsValue) {
   val typeRelations = Array("Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy")
 
   // Class values
-  val id = jsonData("id").toString()
+  val id = jsonData("id").toString().toInt
+
+  val generation = parseGeneration()
 
   // will parse this from data
   // or maybe not?
@@ -100,6 +102,28 @@ class Pokemon(var name: String, var jsonData: JsValue) {
   // Specified Getter for Speed
   def speed(): Int = {
     stats(SPEED).basePower
+  }
+
+  def parseGeneration(): Int = {
+    if (id >= 1 && id <= 151) {
+      return 1
+    } else if (id >= 152 && id <= 251) {
+      return 2
+    } else if (id >= 252 && id <= 386) {
+      return 3
+    } else if (id >= 387 && id <= 493) {
+      return 4
+    } else if (id >= 494 && id <= 649) {
+      return 5
+    } else if (id >= 650 && id <= 721) {
+      return 6
+    } else if (id >= 722 && id <= 809) {
+      return 7
+    } else if (id >= 810 && id <= 898) {
+      return 8
+    } else {
+      return 0
+    }
   }
 
   def getDamageMultiplier(other: Pokemon): Double = {

@@ -10,6 +10,7 @@ scalaVersion := "2.13.3"
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
 libraryDependencies += ws
+libraryDependencies += "org.webjars" % "jquery-ui" % "1.12.1"
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.6221.group9.controllers._"

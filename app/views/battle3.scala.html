@@ -1,0 +1,33 @@
+@(winner: Pokemon)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head> <!--Title-->
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>A Scala PokeDex</title>
+            <!---Links to jQuery library-->
+        <script src="@routes.Assets.versioned("src/jquery.js")"></script>
+        <link rel="stylesheet" href="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.css")">
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/external/jquery/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.js")"></script>
+            <!--link to the pokedex.css stylesheet-->
+        <link rel= "stylesheet" type="text/css" href="@routes.Assets.versioned("css/scaladex.css")" title="style"/>
+    </head>
+    <body>
+            <!--Top navigation bar-->
+        <div class = "topnav">
+            <a class = "active" href="pokedex1.html">Search</a>
+            <div class="topnav-right">
+                <h1 class = "title">A Scala PokeDex</h1>
+            </div>
+        </div>
+        <div class="content">
+            <h1 class = "winner">WINNER!</h1>
+            <h2 class = "battle-result">@winner.name</h2>
+            <img class="pokedex-img" src="@winner.imageURL" alt="Winner Picture" width="475" height="461">
+            <button class="button2">Rematch?</button>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+@(title: String)(pokemon: Pokemon)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head> <!--Title-->
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>@title</title>
+            <!--Link to the pokedex.css stylesheet-->
+        <link rel= "stylesheet" type="text/css" href="@routes.Assets.versioned("css/scaladex.css")" title="style"/>
+            <!---Links to jQuery library-->
+        <script src="@routes.Assets.versioned("src/jquery.js")"></script>
+        <link rel="stylesheet" href="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.css")">
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/external/jquery/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.js")"></script>
+    </head>
+    <body>
+            <!---Creates top navigation bar--->
+        <div class = "topnav">
+            <a class = "active" href="battle1.html">BATTLE!</a>
+            <div class="topnav-right">
+                <h1 class = "title">A Scala PokeDex</h1>
+            </div>
+        </div>
+        <div class="content">
+            <h1 class = "pokedex-result">@pokemon.name</h1>
+            <img class="result-img" src="@pokemon.imageURL" alt="Pokemon Picture" width="475" height="461">
+            <a href = "battle1.html"><button class="button2">Search again?</button></a>
+            <table class="stats-table">
+                <tr>
+                    <th>PokeDex ID</th>
+                    <th>Generation</th>
+                    <th>Type</th>
+                    <th>HP</th>
+                    <th>Attack</th>
+                    <th>Defense</th>
+                    <th>Special Attack</th>
+                    <th>Special Defense</th>
+                    <th>Speed</th>
+                </tr>
+                <td>@pokemon.id</td>
+                <td>3</td>
+                <td>@pokemon.types(0)</td>
+                <td>@pokemon.hp()</td>
+                <td>@pokemon.attack()</td>
+                <td>@pokemon.defense()</td>
+                <td>@pokemon.specialAttack()</td>
+                <td>@pokemon.specialDefense()</td>
+                <td>@pokemon.speed()</td>
+            </table>
+        </div>
+        <div class="desc">
+            <h2>Description</h2>
+            <p> This will need to be parsed from PokeAPI </p>
+        </div>
+    </body>
+</html>

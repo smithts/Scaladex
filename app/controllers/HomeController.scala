@@ -22,20 +22,31 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * a path of `/`.
    */
   def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.pokedex1("Test"))
+    Ok(views.html.pokedex1("A Scala Pokedex"))
   }
 
   def pokedex3(name: String) = Action { implicit request: Request[AnyContent] =>
     var poke = rest.getPokemon(name)
-    Ok(views.html.pokedex3("Test")(poke))
+    Ok(views.html.pokedex3("A Scala Pokedex")(poke))
   }
 
   def battle1() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.battle1())
   }
 
-  def battle3() = Action { implicit request: Request[AnyContent] =>
-    var winner = rest.getPokemon("Mewtwo")
-    Ok(views.html.battle3(winner))
+  def battle3(name1:String, name2: String) = Action { implicit request: Request[AnyContent] =>
+    var p1 = rest.getPokemon(name1)
+    var p2 = rest.getPokemon(name2)
+
+    val battle = manager.createBattle(p1, p2)
+
+    Ok(views.html.battle3(battle.winner))
+  }
+
+  def allBattles() = Action { implicit request: Request[AnyContent] =>
+    var result = "Previous Battles:\n"
+    manager.allPreviousBattles.foreach(battle => result += battle.toString + "\n")
+
+    Ok(result)
   }
 }

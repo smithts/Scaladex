@@ -19,7 +19,7 @@
     <body>
             <!---Top navigation bar--->
         <div class = "topnav">
-            <a class = "active" href="pokedex1.html">SEARCH!</a>
+            <a class = "active" href="/">SEARCH!</a>
             <div class="topnav-right">
                 <h1 class = "title">A Scala PokeDex</h1>
             </div>
@@ -33,13 +33,15 @@
         </div>
         <div class = right>
             <div class="content">
+
                 <input class="rounded-input2" type="text" id="player2" name="pokemon2" placeholder="Player 2">
                 <img class="pokedex-img" src="@routes.Assets.versioned("images/trainer2.png")" alt="Player 2 Picture" width="475" height="600">
             </div>
         </div>
             <!--button-->
         <div class = "center-up">
-            <button class="button2">Fight!</button>
+            <!-- Sample battle that hardcodes dugtrio -->
+           <a href="battle3/dugtrio"><button class="button2">Fight!</button></a>
         </div>
             <!---Creates sidebar that contains instructions-->
         <div class="instruction_bar">

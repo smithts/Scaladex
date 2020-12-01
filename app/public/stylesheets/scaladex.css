@@ -108,11 +108,11 @@ body {
 	 margin: auto;
  }
 
- .centered-down {
+ .center-up {
 	 position: absolute;
 	 max-width: 500px;
 	 top: 0px;
-	 margin-left: 790px;
+	 margin-left: 700px;
 	 margin-top: 100px;
 	 /*bottom: 0;*/
 	 color: #Efd5d3;
@@ -662,7 +662,7 @@ input [type=text]:focus {
 	 /*width: 356px;*/
 	 /*height: 352px;*/
 	 top: 200px;
-	 left: 500px;
+	 left: 400px;
 	 /*margin: 0;*/
 	 /*right: 90px;*/
 	 color: #fcfcfc;
@@ -690,7 +690,7 @@ input [type=text]:focus {
 	/*width: 400px;*/
 	/*height: 352px;*/
 	top: 300px;
-	left: 200px;
+	left: 150px;
 	color: #fcfcfc;
 	background: #4f92c6;
 	border: 1px solid #000000;

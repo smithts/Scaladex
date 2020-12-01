@@ -42,7 +42,13 @@
                 </tr>
                 <td>@pokemon.id</td>
                 <td>3</td>
-                <td>@pokemon.types(0)</td>
+
+                @if(pokemon.types(1) == null) {
+                    <td>@pokemon.types(0)</td>
+                } else {
+                    <td>@pokemon.types(0),@pokemon.types(1)</td>
+                }
+                
                 <td>@pokemon.hp()</td>
                 <td>@pokemon.attack()</td>
                 <td>@pokemon.defense()</td>

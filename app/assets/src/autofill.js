@@ -1,6 +1,5 @@
 "use strict"
 $(function () {
-    /*Array that holds all Pokemon names*/
     var pokemon_arr = [
         "Abomasnow",
         "Abra",
@@ -911,4 +910,34 @@ $(function () {
         autoFocus: true
     })
 
+    /*Autocomplete functions for players*/
+    $("#player1").autocomplete({
+        minLength: 1,
+        source: pokemon_arr,
+        select: function (event, ui) {
+            $(this).val(ui.item ? ui.item : " ");
+        },
+
+        change: function (event, ui) {
+            if (!ui.item) {
+                this.value = '';
+            }
+        },
+        autoFocus: true
+    })
+
+    $("#player2").autocomplete({
+        minLength: 1,
+        source: pokemon_arr,
+        select: function (event, ui) {
+            $(this).val(ui.item ? ui.item : " ");
+        },
+
+        change: function (event, ui) {
+            if (!ui.item) {
+                this.value = '';
+            }
+        },
+        autoFocus: true
+    })
 });

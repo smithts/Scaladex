@@ -1,27 +1,40 @@
-@(title: String)(content: Html)
+@(title: String)
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
     <head> <!--Title-->
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>A Scala PokeDex</title>
+            <!--Link to the pokedex.css stylesheet-->
+        <link rel= "stylesheet" type="text/css" href="@routes.Assets.versioned("css/scaladex.css")" title="style"/>
+            <!---Links to jQuery library-->
+        <script src="@routes.Assets.versioned("src/jquery.js")"></script>
+        <link rel="stylesheet" href="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.css")">
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/external/jquery/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.js")"></script>
+    </head>
+
+    <body><!--creating the body of the page-->
+        <!---Creates top navigation bar--->
         <div class = "topnav">
-            <a class = "active" href="battle1.html">BATTLE!</a>
+            <a class = "active" href="/battle1">BATTLE!</a>
             <div class="topnav-right">
                 <h1 class = "title">@title</h1>
             </div>
         </div>
-            <!--link to the pokedex.css stylesheet-->
-        <link rel= "stylesheet" type="text/css" href="assets/css/scaladex.css" title="style"/>
-    </head>
-
-    <body><!--creating the body of the page-->
+            <!---Starts actual content of the page and places it in the middle of the page--->
         <div class="content">
-            <input class="rounded-input" type="text" id="pokemon" name="pokemon" placeholder="Enter Pokemon">
-            <img class="pokedex-img" src="blaziken.png" alt="Blaziken Picture" width="475" height="461">
-            <button class="button2">Search!</button>
+            <input class="rounded-input" type="text" id="pokemon" name="poke-input" placeholder="Enter Pokemon">
+            <img class="pokedex-img" src="@routes.Assets.versioned("images/blaziken.png")" alt="Blaziken Picture" width="475" height="461">
+            <a href="pokedex3/name"<button class="button2">Search!</button>
         </div>
+            <!---Creates sidebar that contains instructions-->
         <div class="instruction_bar">
-            <p>Welcome to the Scala PokeDex. Please enter a Pokemon and press the Search button to search!</p>
+            <p>Welcome to the Scala PokeDex. Please start typing a pokemon, choose a pokemon from the list, and press the Search button to search!</p>
         </div>
+            <!---Contains script for autofill-->
+        <script src ="@routes.Assets.versioned("src/autofill.js")"></script>
     </body>
 </html>

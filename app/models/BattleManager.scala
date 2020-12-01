@@ -56,15 +56,19 @@ class BattleManager {
 
     if ((p1Damage + p1SpecialDamage) > (p2Damage + p2SpecialDamage)) {
       battle.winner = battle.pkmn1
+      battle.loser = battle.pkmn2
     } else if ((p1Damage + p1SpecialDamage) < (p2Damage + p2SpecialDamage)) {
       battle.winner = battle.pkmn2
+      battle.loser = battle.pkmn1
     } else {
       // Damage equal, default to faster Pokemon
       // If speed equal, Pkmn1 wins.
       if (p1.speed() >= p2.speed()) {
         battle.winner = battle.pkmn1
+        battle.loser = battle.pkmn2
       } else {
         battle.winner = battle.pkmn2
+        battle.loser = battle.pkmn1
       }
     }
   }

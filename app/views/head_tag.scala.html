@@ -1,0 +1,17 @@
+@(title: String)
+
+    <head_tag> <!--Title-->
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>@title</title>
+            <!--link to the pokedex.css stylesheet-->
+        <link rel= "stylesheet" type="text/css" href="@routes.Assets.versioned("css/scaladex.css")" title="style"/>
+            <!-- URL Tab Icon -->
+        <link rel="icon" href="@routes.Assets.versioned("images/pokeball-icon.jpg")">
+            <!---Links to jQuery library-->
+        <script src="@routes.Assets.versioned("src/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("src/getname.js")"></script>
+        <link rel="stylesheet" href="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.css")">
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/external/jquery/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.js")"></script>
+    </head_tag>

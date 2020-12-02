@@ -7,8 +7,11 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <title>A Scala PokeDex</title>
+            <!-- URL Tab Icon -->
+        <link rel="icon" href="@routes.Assets.versioned("images/pokeball-icon.jpg")">
             <!---Links to jQuery library-->
         <script src="@routes.Assets.versioned("src/jquery.js")"></script>
+        <script src="@routes.Assets.versioned("src/getname.js")"></script>
         <link rel="stylesheet" href="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.css")">
         <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/external/jquery/jquery.js")"></script>
         <script src="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.js")"></script>
@@ -40,8 +43,7 @@
         </div>
             <!--button-->
         <div class = "center-up">
-            <!-- Sample battle that hardcodes dugtrio -->
-           <a href="battle3/dugtrio"><button class="button2">Fight!</button></a>
+           <a id="battleButton"><button class="button2" onclick="getPokemonNamesForBattle('player1', 'player2', 'battleButton')">Fight!</button></a>
         </div>
             <!---Creates sidebar that contains instructions-->
         <div class="instruction_bar">

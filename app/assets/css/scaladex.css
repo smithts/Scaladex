@@ -97,7 +97,8 @@ body {
 
 /*Helps move button around*/
 .center-up {
-    position: absolute;
+    position: fixed;
+    z-index: auto;
     max-width: 500px;
     top: 0px;
     margin-left: 700px;

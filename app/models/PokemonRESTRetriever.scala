@@ -32,19 +32,22 @@ class PokemonRESTRetriever {
       }
 
       val url = "https://pokeapi.co/api/v2/pokemon/" + pokemonName
+      val speciesURL = "https://pokeapi.co/api/v2/pokemon-species/" + pokemonName
 
       try {
-        var response = Source.fromURL(url).mkString
+        val response = Source.fromURL(url).mkString
+        val speciesResponse = Source.fromURL(speciesURL).mkString
 
-        if (response.equals("Not Found")) {
+        if (response.equals("Not Found") || speciesResponse.equals("Not Found")) {
           //pokemon does not exist in PokeAPI
           return null
         } else {
 
           val json: JsValue = Json.parse(response)
+          val speciesJson: JsValue = Json.parse(speciesResponse)
 
           //Create pokemon object
-          val pokemon = new Pokemon(pokemonName.capitalize, json)
+          val pokemon = new Pokemon(pokemonName.capitalize, json, speciesJson)
 
           //Using types, get the primary type advantage and assign to pokemon.primaryTypeAdvantages field
           pokemon.primaryTypeAdvantages = utils.getTypeRelations(pokemon.types(0))

@@ -41,7 +41,7 @@
                     <th>Speed</th>
                 </tr>
                 <td>@pokemon.id</td>
-                <td>3</td>
+                <td>@pokemon.generation</td>
 
                 @if(pokemon.types(1) == null) {
                     <td>@pokemon.types(0)</td>
@@ -60,7 +60,7 @@
         <div class="desc">
             <!--Shows description of pokemon-->
             <h2>Description</h2>
-            <p> This will need to be parsed from PokeAPI </p>
+            <p> @pokemon.description </p>
         </div>
     </body>
 </html>

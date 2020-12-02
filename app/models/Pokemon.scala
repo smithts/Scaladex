@@ -1,6 +1,8 @@
 package models
 
-import play.api.libs.json.{JsArray, JsValue, JsString}
+import play.api.libs.json.{JsArray, JsString, JsValue}
+
+import scala.util.control.Breaks.break
 
 /**
  * Pokemon class
@@ -9,7 +11,7 @@ import play.api.libs.json.{JsArray, JsValue, JsString}
  *
  * Will encapsulate all necessary information needed to display a Pokemon.
  * */
-class Pokemon(var name: String, var jsonData: JsValue) {
+class Pokemon(var name: String, var jsonData: JsValue, var speciesJsonData: JsValue) {
   // Constants
 
   //Stats array indexes
@@ -23,13 +25,14 @@ class Pokemon(var name: String, var jsonData: JsValue) {
   val typeRelations = Array("Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy")
 
   // Class values
-  val id = jsonData("id").toString()
+  val id = jsonData("id").toString().toInt
 
-  // will parse this from data
-  // or maybe not?
+  val generation = ""
+  parseGeneration()
+
   var description = ""
+  parseDescription()
 
-  // will parse this from data
   var types = new Array[String](2)
   parseTypesArray(jsonData("types"))
 
@@ -102,6 +105,45 @@ class Pokemon(var name: String, var jsonData: JsValue) {
     stats(SPEED).basePower
   }
 
+  def parseGeneration(): Int = {
+    if (id >= 1 && id <= 151) {
+      return 1
+    } else if (id >= 152 && id <= 251) {
+      return 2
+    } else if (id >= 252 && id <= 386) {
+      return 3
+    } else if (id >= 387 && id <= 493) {
+      return 4
+    } else if (id >= 494 && id <= 649) {
+      return 5
+    } else if (id >= 650 && id <= 721) {
+      return 6
+    } else if (id >= 722 && id <= 809) {
+      return 7
+    } else if (id >= 810 && id <= 898) {
+      return 8
+    } else {
+      return 0
+    }
+  }
+
+  def parseDescription(): Unit  = {
+    //Need to find the first English description
+    var index = 0
+    var foundEnglish = false
+
+    while(!foundEnglish && index < 1000) {
+      if (speciesJsonData("flavor_text_entries")(index)("language")("name").as[String] == "en") {
+        foundEnglish = true
+      }
+
+      index = index + 1
+    }
+
+    description = speciesJsonData("flavor_text_entries")(index)("flavor_text").toString()
+      .replace("\\f", " ").replace("\\n", " ")
+  }
+
   def getDamageMultiplier(other: Pokemon): Double = {
     var multiplier = 1.0
 
@@ -113,5 +155,9 @@ class Pokemon(var name: String, var jsonData: JsValue) {
     }
 
     return multiplier
+  }
+
+  override def toString: String = {
+    "Let's go, " + name + "!"
   }
 }

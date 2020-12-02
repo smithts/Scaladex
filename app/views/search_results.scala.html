@@ -9,6 +9,8 @@
         <title>A Scala PokeDex</title>
             <!--Link to the pokedex.css stylesheet-->
         <link rel= "stylesheet" type="text/css" href="@routes.Assets.versioned("css/scaladex.css")" title="style"/>
+            <!-- URL Tab Icon -->
+        <link rel="icon" href="@routes.Assets.versioned("images/pokeball-icon.jpg")">
             <!---Links to jQuery library-->
         <script src="@routes.Assets.versioned("src/jquery.js")"></script>
         <link rel="stylesheet" href="@routes.Assets.versioned("jquery-ui-1.12.1.custom/jquery-ui.min.css")">
@@ -18,7 +20,7 @@
     <body>
             <!---Creates top navigation bar--->
         <div class = "topnav">
-            <a class = "active" href="battle1">BATTLE!</a>
+            <a class = "active" href="../battle">BATTLE!</a>
             <div class="topnav-right">
                 <h1 class = "title">A Scala PokeDex</h1>
             </div>
@@ -26,7 +28,7 @@
         <div class="content">
             <h1 class = "pokedex-result">@pokemon.name</h1><!--Shows pokemon name-->
             <img class="result-img" src="@pokemon.imageURL" alt="Pokemon Picture" width="475" height="461"><!--Shows pokemon picture-->
-            <a href = "/"><button class="button2">Search again?</button></a><!--Takes player back to search-->
+            <a href = "../../scaladex/search"><button class="button2">Search again?</button></a><!--Takes player back to search-->
             <table class="stats-table">
                 <!--Shows all pokemon stats as a table-->
                 <tr>
@@ -46,7 +48,7 @@
                 @if(pokemon.types(1) == null) {
                     <td>@pokemon.types(0)</td>
                 } else {
-                    <td>@pokemon.types(0),@pokemon.types(1)</td>
+                    <td>@pokemon.types(0)/@pokemon.types(1)</td>
                 }
                 
                 <td>@pokemon.hp()</td>

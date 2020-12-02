@@ -1,8 +1,7 @@
 package models
 
-import play.api.libs.json.{JsArray, JsString, JsValue}
+import play.api.libs.json.{JsArray, JsValue}
 
-import scala.util.control.Breaks.break
 
 /**
  * Pokemon class
@@ -27,7 +26,7 @@ class Pokemon(var name: String, var jsonData: JsValue, var speciesJsonData: JsVa
   // Class values
   val id = jsonData("id").toString().toInt
 
-  val generation = ""
+  var generation = ""
   parseGeneration()
 
   var description = ""
@@ -105,25 +104,25 @@ class Pokemon(var name: String, var jsonData: JsValue, var speciesJsonData: JsVa
     stats(SPEED).basePower
   }
 
-  def parseGeneration(): Int = {
+  def parseGeneration(): Unit = {
     if (id >= 1 && id <= 151) {
-      return 1
+      generation= "1"
     } else if (id >= 152 && id <= 251) {
-      return 2
+      generation= "2"
     } else if (id >= 252 && id <= 386) {
-      return 3
+      generation= "3"
     } else if (id >= 387 && id <= 493) {
-      return 4
+      generation= "4"
     } else if (id >= 494 && id <= 649) {
-      return 5
+      generation= "5"
     } else if (id >= 650 && id <= 721) {
-      return 6
+      generation= "6"
     } else if (id >= 722 && id <= 809) {
-      return 7
+      generation= "7"
     } else if (id >= 810 && id <= 898) {
-      return 8
+      generation= "8"
     } else {
-      return 0
+      return "0"
     }
   }
 

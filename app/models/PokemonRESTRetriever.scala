@@ -21,8 +21,15 @@ class PokemonRESTRetriever {
 
   @throws(classOf[java.io.IOException])
   def getPokemon(name: String): Pokemon = {
-      val pokemonName = name.toLowerCase()
+      var pokemonName = name.toLowerCase()
 
+      if (pokemonName.equalsIgnoreCase("Mr. Mime")) {
+        pokemonName = "mr-mime"
+      } else if (pokemonName.equalsIgnoreCase("Mr. Rime")){
+        pokemonName = "mr-rime"
+      } else if (pokemonName.equalsIgnoreCase("Mime Jr.")) {
+        pokemonName = "mime-jr"
+      }
       // checks the cache map for the pokemon
       if (pokeMap.contains(pokemonName)) {
         //map.get returns an Option[Pokemon]
@@ -63,12 +70,5 @@ class PokemonRESTRetriever {
             //if not found, return null object. Front end will handle that.
         case e: FileNotFoundException => return null
       }
-
-
-    //Flavor Text:
-    //https://pokeapi.co/api/v2/pokemon-species/{id or name}/
-    //["flavor_text_entries"][0]["flavor_text"]
-    //remember to skip "\n" characters.
-
     }
 }

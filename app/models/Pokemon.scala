@@ -1,6 +1,8 @@
 package models
 
-import play.api.libs.json.{JsArray, JsValue, JsString}
+import play.api.libs.json.{JsArray, JsString, JsValue}
+
+import scala.util.control.Breaks.break
 
 /**
  * Pokemon class
@@ -9,7 +11,7 @@ import play.api.libs.json.{JsArray, JsValue, JsString}
  *
  * Will encapsulate all necessary information needed to display a Pokemon.
  * */
-class Pokemon(var name: String, var jsonData: JsValue) {
+class Pokemon(var name: String, var jsonData: JsValue, var speciesJsonData: JsValue) {
   // Constants
 
   //Stats array indexes
@@ -25,13 +27,12 @@ class Pokemon(var name: String, var jsonData: JsValue) {
   // Class values
   val id = jsonData("id").toString().toInt
 
-  val generation = parseGeneration()
+  val generation = ""
+  parseGeneration()
 
-  // will parse this from data
-  // or maybe not?
   var description = ""
+  parseDescription()
 
-  // will parse this from data
   var types = new Array[String](2)
   parseTypesArray(jsonData("types"))
 
@@ -126,6 +127,23 @@ class Pokemon(var name: String, var jsonData: JsValue) {
     }
   }
 
+  def parseDescription(): Unit  = {
+    //Need to find the first English description
+    var index = 0
+    var foundEnglish = false
+
+    while(!foundEnglish && index < 1000) {
+      if (speciesJsonData("flavor_text_entries")(index)("language")("name").as[String] == "en") {
+        foundEnglish = true
+      }
+
+      index = index + 1
+    }
+
+    description = speciesJsonData("flavor_text_entries")(index)("flavor_text").toString()
+      .replace("\\f", " ").replace("\\n", " ")
+  }
+
   def getDamageMultiplier(other: Pokemon): Double = {
     var multiplier = 1.0
 
@@ -137,5 +155,9 @@ class Pokemon(var name: String, var jsonData: JsValue) {
     }
 
     return multiplier
+  }
+
+  override def toString: String = {
+    "Let's go, " + name + "!"
   }
 }

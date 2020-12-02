@@ -5,7 +5,7 @@ function getPokemonNameForDex(id, hrefElementId) {
         return;
     }
 
-    document.getElementById(hrefElementId).setAttribute("href","pokedex3/" + name);
+    document.getElementById(hrefElementId).setAttribute("href","search-results/" + name);
 }
 
 function getPokemonNamesForBattle(id1, id2, hrefElementId) {
@@ -16,5 +16,5 @@ function getPokemonNamesForBattle(id1, id2, hrefElementId) {
         return;
     }
 
-    document.getElementById(hrefElementId).setAttribute("href","battle3/" + name1 + "," + name2);
+    document.getElementById(hrefElementId).setAttribute("href","battle-results/" + name1 + "," + name2);
 }
